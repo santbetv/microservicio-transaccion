@@ -8,6 +8,11 @@ import java.util.List;
 
 import org.springframework.validation.BindingResult;
 
+
+/**
+ *
+ * @author Santiago Betancur
+ */
 public interface IClienteService {
 
     public Cliente findById(Long id) throws BussinesRuleException;

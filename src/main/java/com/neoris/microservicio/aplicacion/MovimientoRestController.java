@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
- * @author rizzoli
+ * @author Santiago Betancur
  */
 @RestController
 @RequestMapping("/api")

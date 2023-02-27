@@ -16,7 +16,7 @@ import org.springframework.validation.BindingResult;
 
 /**
  *
- * @author rizzoli
+ * @author Santiago Betancur
  */
 public interface IMovimientoService {
 

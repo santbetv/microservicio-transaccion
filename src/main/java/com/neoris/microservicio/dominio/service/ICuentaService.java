@@ -9,7 +9,7 @@ import org.springframework.validation.BindingResult;
 
 /**
  *
- * @author Santiago
+ * @author Santiago Betancur
  */
 public interface ICuentaService {
 
