@@ -12,16 +12,12 @@ import lombok.Setter;
 @Setter
 @Embeddable
 public class MovimientoPK implements Serializable {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5598460983055790741L;
 
-	@Column(name = "id_cliente")
-	private Long idCliente;
+    /**
+     *
+     */
+    private static final long serialVersionUID = -5598460983055790741L;
 
-	@Column(name = "id_cuenta")
-	private Long idCuenta;
+    
 
 }

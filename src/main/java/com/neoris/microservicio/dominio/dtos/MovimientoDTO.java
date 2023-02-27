@@ -5,7 +5,6 @@
  */
 package com.neoris.microservicio.dominio.dtos;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Positive;
 import lombok.Getter;
@@ -17,15 +16,13 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class CuentaDTO {
+public class MovimientoDTO {
     
-    @NotEmpty(message = "No puede estar vacio")
-    private String numeroNuenta;
-    @NotEmpty(message = "No puede estar vacio")
-    private String tipoCuenta;
-    private Double saldoInicial;
-    private Boolean estado;
     @Positive(message = "Debe ser numero positivo")
     private Long idCliente;
-
+    @Positive(message = "Debe ser numero positivo")
+    private Long idCuenta;
+    @NotEmpty(message = "no puede estar vacio")
+    private String tipoMovimiento;
+    private Double valor;
 }

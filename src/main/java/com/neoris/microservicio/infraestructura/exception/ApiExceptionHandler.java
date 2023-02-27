@@ -17,6 +17,7 @@ public class ApiExceptionHandler {
         private static final String CODIGO_ERROR_VALIDATION ="002";
 	private static final String ERROR_VALIDACION = "Error de validación";
 	private static final String ERROR_VALIDACION_NO_EXISTE = "Error de validación, cliente no existe";
+        
 	
 	
 	@ExceptionHandler(UnknownHostException.class)
@@ -28,6 +29,13 @@ public class ApiExceptionHandler {
 	@ExceptionHandler(BussinesRuleException.class)
 	public ResponseEntity<ApiExeceptionResponse> handleBussinesRuleException(BussinesRuleException ex) {
 		ApiExeceptionResponse response = new ApiExeceptionResponse(ex.getType(),ERROR_VALIDACION, CODIGO_ERROR,
+				ERROR_VALIDACION_NO_EXISTE);
+		return new ResponseEntity(response, HttpStatus.NOT_FOUND);
+	}
+        
+        @ExceptionHandler(BussinesRuleMovimientoValidationException.class)
+	public ResponseEntity<ApiExeceptionResponse> handleBussinesRuleException(BussinesRuleMovimientoValidationException ex) {
+		ApiExeceptionResponse response = new ApiExeceptionResponse(ex.getType(),ERROR_VALIDACION, ex.getCode(),
 				ERROR_VALIDACION_NO_EXISTE);
 		return new ResponseEntity(response, HttpStatus.NOT_FOUND);
 	}

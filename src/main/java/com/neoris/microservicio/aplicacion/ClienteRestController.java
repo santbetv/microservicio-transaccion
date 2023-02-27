@@ -61,7 +61,7 @@ public class ClienteRestController {
 
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/clientes/{id}")
     public ResponseEntity<?> put(@Valid @RequestBody ClienteDTO input, BindingResult result, @PathVariable Long id) throws BussinesRuleException, BussinesRuleValidationException {
         iClienteService.put(input, result, id);
         return new ResponseEntity(HttpStatus.OK);

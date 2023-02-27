@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.ArrayList;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -25,32 +26,33 @@ import lombok.Setter;
 @Table(name = "cuentas")
 public class Cuenta {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_cuenta")
-	private Long idCuenta;
-	
-	@Column(name = "numero_nuenta")
-	private String numeroNuenta;
-	
-	@Column(name = "tipo_cuenta")
-	private String tipoCuenta;
-	
-	@Column(name = "saldo_inicial")
-	private Double saldoInicial;
-	
-	private Boolean estado;
-        
-	@JsonIgnoreProperties(value = { "cuentas", "hibernateLazyInitializer", "handler" }, allowSetters = true)
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_cliente")
-	private Cliente objCliente;
-	
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "objCuentaMovimiento", cascade = CascadeType.ALL)
-	private List<Movimiento> cuentaMovimientos;
-	
-	
-	
-	
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_cuenta")
+    private Long idCuenta;
+
+    @Column(name = "numero_nuenta")
+    private String numeroNuenta;
+
+    @Column(name = "tipo_cuenta")
+    private String tipoCuenta;
+
+    @Column(name = "saldo_inicial")
+    private Double saldoInicial;
+
+    private Boolean estado;
+
+    @JsonIgnoreProperties(value = {"cuentas", "hibernateLazyInitializer", "handler"}, allowSetters = true)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_cliente")
+    private Cliente objCliente;
+    
+    @JsonIgnoreProperties(value = {"objClienteMovimiento", "hibernateLazyInitializer", "handler"}, allowSetters = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "objCuentaMovimiento", cascade = CascadeType.ALL)
+    private List<Movimiento> cuentaMovimientos;
+
+    public Cuenta() {
+        this.cuentaMovimientos = new ArrayList<>();
+    }
+
 }

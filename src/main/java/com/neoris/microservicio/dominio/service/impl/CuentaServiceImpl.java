@@ -19,7 +19,7 @@ import org.springframework.validation.BindingResult;
 
 /**
  *
- * @author Santiago
+ * @author Santiago Betancur
  */
 @Service
 public class CuentaServiceImpl implements ICuentaService {

@@ -37,6 +37,7 @@ public class Cliente extends Persona implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "objCliente", cascade = CascadeType.ALL)
     private List<Cuenta> cuentas;
 
+    @JsonIgnoreProperties(value = {"objCuentaMovimiento", "hibernateLazyInitializer", "handler"}, allowSetters = true)
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "objClienteMovimiento", cascade = CascadeType.ALL)
     private List<Movimiento> clienteMovimientos;
 

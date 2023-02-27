@@ -32,6 +32,11 @@ public class BussinesRuleValidationException extends Exception {
         this.type = type;
         this.result = result;
     }
+    
+    public BussinesRuleValidationException(String type, String result) {
+        this.type = type;
+        this.code = result;
+    }
 
     public BussinesRuleValidationException(String message, Throwable cause) {
         super(message, cause);

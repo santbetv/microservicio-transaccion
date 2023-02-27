@@ -21,6 +21,6 @@ public interface ICuentaService {
 
     public void put(CuentaDTO cuentaDTO, BindingResult result, Long id) throws BussinesRuleException, BussinesRuleValidationException;
 
-   public void delete(Long id) throws BussinesRuleException;
+    public void delete(Long id) throws BussinesRuleException;
 
 }
