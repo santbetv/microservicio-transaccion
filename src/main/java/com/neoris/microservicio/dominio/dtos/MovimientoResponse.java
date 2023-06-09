@@ -39,7 +39,7 @@ public class MovimientoResponse {
         this.tipoMovimiento = movimiento.getValor();
         this.saldo = movimiento.getSaldo();
     }
-
+    
     public MovimientoResponse build(Movimiento movimiento) {
         return new MovimientoResponse(movimiento);
     }

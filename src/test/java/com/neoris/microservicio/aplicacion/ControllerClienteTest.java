@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.neoris.microservicio;
+package com.neoris.microservicio.aplicacion;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -24,7 +24,7 @@ import org.springframework.test.annotation.DirtiesContext;
 @SpringBootTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @AutoConfigureMockMvc
-public class ControllerCuentaTest {
+public class ControllerClienteTest {
     
     @Autowired
     private MockMvc mvc;
@@ -38,7 +38,7 @@ public class ControllerCuentaTest {
         // arrange
 
         // act - assert
-        mvc.perform(get("/api/cuentas")
+        mvc.perform(get("/api/clientes")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 //                .andExpect(jsonPath("$[0].odontologo", is("julio")));

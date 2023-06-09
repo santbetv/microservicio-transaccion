@@ -1,6 +1,9 @@
 package com.neoris.microservicio.dominio.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +23,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
+@Entity 
 @Table(name = "clientes")
 public class Cliente extends Persona implements Serializable {
 
@@ -33,11 +36,11 @@ public class Cliente extends Persona implements Serializable {
 
     private Boolean estado;
 
-    @JsonIgnoreProperties(value = {"objCliente", "hibernateLazyInitializer", "handler"}, allowSetters = true)
+    @JsonManagedReference
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "objCliente", cascade = CascadeType.ALL)
     private List<Cuenta> cuentas;
 
-    @JsonIgnoreProperties(value = {"objCuentaMovimiento", "hibernateLazyInitializer", "handler"}, allowSetters = true)
+    @JsonManagedReference
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "objClienteMovimiento", cascade = CascadeType.ALL)
     private List<Movimiento> clienteMovimientos;
 

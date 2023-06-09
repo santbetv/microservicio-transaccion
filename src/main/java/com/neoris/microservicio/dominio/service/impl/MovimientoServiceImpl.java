@@ -18,6 +18,7 @@ import com.neoris.microservicio.dominio.service.IMovimientoService;
 import com.neoris.microservicio.infraestructura.exception.BussinesRuleException;
 import com.neoris.microservicio.infraestructura.exception.BussinesRuleMovimientoValidationException;
 import com.neoris.microservicio.infraestructura.exception.BussinesRuleValidationException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
@@ -69,9 +70,21 @@ public class MovimientoServiceImpl implements IMovimientoService {
     }
 
     @Override
+    public List<MovimientoResponse> findByFechaAndByCustomer() { 
+        List<Movimiento> pruebaC = movimientoRepository.datosCliente();
+        
+        List<MovimientoResponse> mr = new ArrayList<>();
+        
+        for (Movimiento movimiento : pruebaC) {
+            mr.add(new MovimientoResponse().build(movimiento));
+        }
+        return mr;
+    }
+
+    @Override
     @Transactional() //
     public MovimientoResponse save(MovimientoDTO movimientoDTO, BindingResult result) throws BussinesRuleValidationException, BussinesRuleException, BussinesRuleMovimientoValidationException {
-        
+
         if (result.hasErrors()) {
             BussinesRuleValidationException exception = new BussinesRuleValidationException(INFO_URL, result);
             throw exception;

@@ -35,7 +35,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RestController
 @RequestMapping("/api")
 public class MovimientoRestController {
-    
+
     private static final Logger LOG = LoggerFactory.getLogger(MovimientoRestController.class);
 
     IMovimientoService iMovimientoService;
@@ -44,31 +44,32 @@ public class MovimientoRestController {
     public MovimientoRestController(IMovimientoService iMovimientoService) {
         this.iMovimientoService = iMovimientoService;
     }
-    
+
     @GetMapping("/movimientos")
     public List<Movimiento> list() {
         return iMovimientoService.findAll();
     }
-    
+
     @GetMapping("/movimientos/{id}")
     public Movimiento get(@PathVariable Long id) throws BussinesRuleException {
         return iMovimientoService.findById(id);
     }
-    
+
+    @GetMapping("/movimientos/listar")
+    public List<MovimientoResponse> gets() {
+        return iMovimientoService.findByFechaAndByCustomer();
+    }
+
     @PostMapping("/movimientos")
-    public ResponseEntity<?> post(@Valid @RequestBody MovimientoDTO input, BindingResult result) throws BussinesRuleValidationException, BussinesRuleException,BussinesRuleMovimientoValidationException {
+    public ResponseEntity<?> post(@Valid @RequestBody MovimientoDTO input, BindingResult result) throws BussinesRuleValidationException, BussinesRuleException, BussinesRuleMovimientoValidationException {
         MovimientoResponse save = iMovimientoService.save(input, result);
         return ResponseEntity.ok(save);
     }
-    
+
     @PutMapping("/movimientos/{id}")
     public ResponseEntity<?> put(@Valid @RequestBody MovimientoDTO input, BindingResult result, @PathVariable Long id) throws BussinesRuleException, BussinesRuleValidationException {
         iMovimientoService.put(input, result, id);
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    
-    
-    
-    
 }

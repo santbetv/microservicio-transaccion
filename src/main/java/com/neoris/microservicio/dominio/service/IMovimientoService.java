@@ -23,6 +23,8 @@ public interface IMovimientoService {
     public Movimiento findById(Long id) throws BussinesRuleException;
 
     public List<Movimiento> findAll();
+    
+    public List<MovimientoResponse> findByFechaAndByCustomer();
 
     public MovimientoResponse save(MovimientoDTO movimientoDTO, BindingResult result) throws BussinesRuleValidationException, BussinesRuleException,BussinesRuleMovimientoValidationException;
 

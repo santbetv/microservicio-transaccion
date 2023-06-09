@@ -1,6 +1,6 @@
 package com.neoris.microservicio.dominio.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -11,18 +11,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.time.LocalDate;
 import javax.persistence.PrePersist;
+import lombok.AllArgsConstructor;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor//con costructor full
+@NoArgsConstructor//con constructor default
 @Entity
 @Table(name = "movimientos")
 public class Movimiento implements Serializable {
@@ -45,14 +47,12 @@ public class Movimiento implements Serializable {
     private Double valor;
     private Double saldo = 0.0;
 
-
-    @JsonIgnore
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_cliente")
     private Cliente objClienteMovimiento;
 
-
-    @JsonIgnore
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_cuenta")
     private Cuenta objCuentaMovimiento;
@@ -70,19 +70,19 @@ public class Movimiento implements Serializable {
             }
             this.saldo = saldoInicial + this.valor;
         } else {
-            actualizarPostSaldoTotal(saldoaAnterior,saldoInicial);
+            actualizarPostSaldoTotal(saldoaAnterior, saldoInicial);
         }
 
         return this.saldo;
     }
 
-    public Double actualizarPostSaldoTotal(Double saldoaAnterior,Double saldoInicial) {
+    public Double actualizarPostSaldoTotal(Double saldoaAnterior, Double saldoInicial) {
         if (saldoaAnterior != null) {
             this.saldo = saldoaAnterior;
             if (TipoMovimiento.RETIRO.getValor().equals(this.tipoMovimiento.toUpperCase())) {
                 this.saldo = this.saldo - this.valor;
             }
-        }else{
+        } else {
             this.saldo = saldoInicial - this.valor;
         }
 

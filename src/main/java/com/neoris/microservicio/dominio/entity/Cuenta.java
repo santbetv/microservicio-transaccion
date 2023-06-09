@@ -1,5 +1,7 @@
 package com.neoris.microservicio.dominio.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,6 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.util.ArrayList;
 
 import lombok.Getter;
@@ -42,12 +46,12 @@ public class Cuenta {
 
     private Boolean estado;
 
-    @JsonIgnoreProperties(value = {"cuentas", "hibernateLazyInitializer", "handler"}, allowSetters = true)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_cliente")
+    @JsonBackReference
     private Cliente objCliente;
     
-    @JsonIgnoreProperties(value = {"objClienteMovimiento", "hibernateLazyInitializer", "handler"}, allowSetters = true)
+    @JsonManagedReference
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "objCuentaMovimiento", cascade = CascadeType.ALL)
     private List<Movimiento> cuentaMovimientos;
 

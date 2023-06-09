@@ -3,48 +3,34 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.neoris.microservicio;
+package com.neoris.microservicio.aplicacion;
+
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  *
  * @author Santiago Betancur
  */
+@Getter
+@Setter
 public class MovimientoTest {
 
     private Long idMovimiento;
     private String fecha;
     private String tipoMovimiento;
-    private String valor;
+    private Double valor;
     private Double saldo = 5000.0;
 
-    public MovimientoTest(Long idMovimiento, String fecha, String tipoMovimiento, String valor) {
+    public MovimientoTest(Long idMovimiento, String fecha, String tipoMovimiento, Double valor) {
         this.idMovimiento = idMovimiento;
         this.fecha = fecha;
         this.tipoMovimiento = tipoMovimiento;
         this.valor = valor;
     }
 
-    public Long getIdMovimiento() {
-        return idMovimiento;
+    public MovimientoTest() {
     }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public String getTipoMovimiento() {
-        return tipoMovimiento;
-    }
-
-    public String getValor() {
-        return valor;
-    }
-
-    public Double getSaldo() {
-        return saldo;
-    }
-
-    
-
     
 }
+
