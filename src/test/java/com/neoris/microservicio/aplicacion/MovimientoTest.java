@@ -5,15 +5,21 @@
  */
 package com.neoris.microservicio.aplicacion;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  *
  * @author Santiago Betancur
  */
-@Getter
-@Setter
+@Data
+@EqualsAndHashCode
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class MovimientoTest {
 
     private Long idMovimiento;
@@ -21,16 +27,12 @@ public class MovimientoTest {
     private String tipoMovimiento;
     private Double valor;
     private Double saldo = 5000.0;
-
-    public MovimientoTest(Long idMovimiento, String fecha, String tipoMovimiento, Double valor) {
-        this.idMovimiento = idMovimiento;
-        this.fecha = fecha;
-        this.tipoMovimiento = tipoMovimiento;
-        this.valor = valor;
-    }
-
-    public MovimientoTest() {
-    }
+    
+    
+    public MovimientoTest builderMovimientoTest(Long idMovimiento, String fecha, String tipoMovimiento, Double valor){
+        return new MovimientoTest(idMovimiento, fecha, tipoMovimiento, valor, 600000.0);
+       
+    } 
     
 }
 
